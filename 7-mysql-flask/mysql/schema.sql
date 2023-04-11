@@ -1,0 +1,8 @@
+create database flaskhost;
+use flaskhost;
+create table flaskhost.users 
+(
+id INT NOT NULL AUTO_INCREMENT
+,name VARCHAR(255)
+,PRIMARY KEY(id)
+);

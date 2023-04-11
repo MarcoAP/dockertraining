@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    volumes:
+      - db_data2:/var/lib/mysql
+    restart: always
+    env_file:
+      - ./config/db.env
+    ports:
+      - 3309:3306
+    networks:
+      - backend_network
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress
+    ports:
+      - 8002:80
+    restart: always
+    env_file:
+      - ./config/db.env
+    networks:
+      - backend_network
+volumes:
+  db_data2: {}
+networks:
+  backend_network: 
+    driver: bridge
